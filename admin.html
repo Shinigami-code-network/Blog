@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #editor {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 200px;
+            margin-top: 10px;
+        }
+        img {
+            max-width: 100%; /* Ensure images are responsive */
+            height: auto;    /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Create a New Blog Post</h2>
+        <form action="create-post.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Post Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div id="editor" contenteditable="true"></div>
+            <input type="hidden" name="content" id="content">
+            <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="submitContent()">Create Post</button>
+        </form>
+    </div>
+
+    <script>
+        function submitContent() {
+            // Get the content from the editor and set it to the hidden input
+            const editorContent = document.getElementById('editor').innerHTML;
+            document.getElementById('content').value = editorContent;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
